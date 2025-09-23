@@ -29,9 +29,9 @@ ANZ_FILE=$(ls ${ANZ_DIR}/*.fastq.gz | head -n1)
 
 # Count k-mers (k=21) using Jellyfish
 apptainer exec --bind ${WORKDIR} ${CONTAINER} \
-jellyfish count -C -m 21 -s 5G -t 4 -o ${OUTPUT_DIR}/anz_counts.jf <(zcat ${ANZ_FILE})
+jellyfish count -C -m 21 -s 5G -t ${SLURM_CPUS_PER_TASK} -o ${OUTPUT_DIR}/anz_counts.jf <(zcat ${ANZ_FILE})
 # -C: canonical kmers (both strands)
 
 # Export the k-mer count histogram
 apptainer exec --bind ${WORKDIR} ${CONTAINER} \
-jellyfish histo -t 4 ${OUTPUT_DIR}/anz_counts.jf > ${OUTPUT_DIR}/anz_counts.histo
+jellyfish histo -t ${SLURM_CPUS_PER_TASK} ${OUTPUT_DIR}/anz_counts.jf > ${OUTPUT_DIR}/anz_counts.histo
