@@ -24,8 +24,8 @@ OUTPUT_DIR="${WORKDIR}/FastQC_Results"
 mkdir -p ${OUTPUT_DIR}
 
 # Run FastQC on Anz-0 file(s)
-apptainer exec --bind ${ANZ_DIR} ${CONTAINER} fastqc ${ANZ_DIR}/*.fastq.gz -o ${OUTPUT_DIR} -t 1
-    # CPU threads per task is 1 (-t 1)
+apptainer exec --bind ${WORKDIR} ${CONTAINER} fastqc ${ANZ_DIR}/*.fastq.gz -o ${OUTPUT_DIR} -t ${SLURM_CPUS_PER_TASK}
+    # CPU threads per task is 1 (-t ${SLURM_CPUS_PER_TASK})
 
 # Run FastQC on Reference file(s)
-apptainer exec --bind ${ANZ_DIR} ${CONTAINER} fastqc ${REFERENCE_DIR}/*.fastq.gz -o ${OUTPUT_DIR} -t 1
+apptainer exec --bind ${WORKDIR} ${CONTAINER} fastqc ${REFERENCE_DIR}/*.fastq.gz -o ${OUTPUT_DIR} -t ${SLURM_CPUS_PER_TASK}
