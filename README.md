@@ -1,9 +1,10 @@
 # Genome and Transcriptome Assembly
-#### This repository contains scripts and workflow steps for the course "**473637-HS2025-0: Genome and Transcriptome Assembly**".
+**This repository contains scripts and workflow steps for the course "473637-HS2025-0: Genome and Transcriptome Assembly"**.
+
 The goal is to assemble genomes and transcriptomes from raw sequencing data (2nd and 3rd generation sequencing) and evaluate their quality.
 
 The project follows the complete workflow:
-- **Quality Control** and **Read Trimming**
+- **Quality Control** and **Preprocessing** (Read trimming and filtering)
 - **k-mer Counting**
 - **Genome Assembly** using multiple assemblers
 - **Transcriptome Assembly**.
@@ -37,41 +38,35 @@ Genome_Transcriptome_Assembly/
 └── README.md
 ```
 
-## Analysis Workflow             need to change this, not nice looking
-1. **Quality Control & Preprocessing**  
-   - Run FastQC on raw reads  
-   - Filter and trim reads with Fastp  
-   - Re-check quality on cleaned reads  
+## Analysis Workflow
 
-2. **Genome Size Estimation**  
-   - Count k-mers with Jellyfish
+| Step(s) | Task                                  | Tool(s)                     |
+|---------|---------------------------------------|-----------------------------|
+| 1, 2, 3 | Quality Control & Preprocessing       | FastQC, Fastp               |
+| 4       | Genome Size Estimation (k-mer counts) | Jellyfish                   |
+| 5, 6, 7 | Genome Assembly (multiple approaches) | Flye, Hifiasm, LJA          |
+| 8       | Transcriptome Assembly                | Trinity                     |
+| 9, 10, 11, 12, 13| Assembly Evaluation          | BUSCO, QUAST, Merqury       |
+| 14      | Assembly Comparison                   | MUMmer/Nucmer               |
 
-3. **Genome Assembly**  
-   - Perform de novo assembly with Flye, Hifiasm, and LJA  
-
-4. **Transcriptome Assembly**  
-   - Assemble transcripts with Trinity  
-
-5. **Assembly Evaluation & Comparison**  
-   - Assess completeness with BUSCO  
-   - Evaluate assembly statistics with QUAST  
-   - Use helper script `get_best_k.sh` for optimal k-mer size  
-   - Perform reference-free quality evaluation with Merqury  
-   - Compare genome assemblies with Nucmer and MUMmer
+This workflow was applied to one genome dataset and two transcriptome datasets.  
+- **Transcriptomes** were quality-filtered with Fastp and assembled with Trinity.  
+- **Genome** data was assembled using Flye, Hifiasm, and LJA, after k-mer analysis with Jellyfish.  
+- **Evaluation**: BUSCO was used on both genome and transcriptome assemblies, while QUAST, Merqury, and MUMmer/Nucmer were run only on the genome assemblies.
 
 ## Dependencies
 The following tools (+ versions) were used in this project:
-- FastQC ()
-- Fastp ()
-- Jellyfish ()
-- Flye ()
-- Hifiasm ()
-- LJA ()
-- Trinity ()
-- BUSCO ()
-- QUAST ()
-- Merqury ()
-- MUMmer4 ()
+- FastQC (v0.12.1)
+- Fastp (v0.24.1)
+- Jellyfish (v2.2.6)
+- Flye (v2.9.5)
+- Hifiasm (v0.25.0)
+- LJA (v0.2)
+- Trinity (v2.15.1)
+- BUSCO (v5.7.1)
+- QUAST (v5.2.0)
+- Merqury (v1.3)
+- MUMmer4 (v4.0.0)
 
 ## Usage
 All scripts are written for an HPC environment with **SLURM job scheduling**.  
@@ -79,7 +74,7 @@ Paths and resource parameters (CPUs, memory, runtime) should be adapted to your 
 
 Example:
 ```bash
-sbatch scripts/01_run_fastqc.sh
+sbatch 01_run_fastqc.sh
 ```
 Scripts can be executed independently or sequentially, following the workflow order (scripts are numbered).
 
