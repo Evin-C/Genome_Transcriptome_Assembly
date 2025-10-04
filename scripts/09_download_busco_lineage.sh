@@ -8,6 +8,10 @@
 #SBATCH --time=00:30:00
 #SBATCH --partition=pibu_el8
 
+# This script downloads and extracts the BUSCO lineage dataset (brassicales_odb10)
+# required for genome completeness assessment. The lineage is pre-downloaded
+# locally to ensure reproducibility and avoid network issues during BUSCO runs.
+
 # Define USER variable
 USER="ecapan"
 
