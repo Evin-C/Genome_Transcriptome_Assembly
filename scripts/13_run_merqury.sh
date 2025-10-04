@@ -36,9 +36,8 @@ READS="${WORKDIR}/Anz-0/ERR11437354.fastq.gz"
 apptainer exec --bind ${WORKDIR} ${CONTAINER} meryl k=19 count \
   ${READS} output ${OUTPUT_DIR}/reads.meryl     # Results in "reads.meryl", which is the meryl DB
 
-###########
+#--------------------------
 # Flye
-###########
 mkdir -p ${OUTPUT_DIR}/flye_eval/logs
 cd ${OUTPUT_DIR}/flye_eval
 
@@ -46,9 +45,8 @@ apptainer exec --bind ${WORKDIR} ${CONTAINER} ${MERQURY}/merqury.sh \
   ${OUTPUT_DIR}/reads.meryl ${FLYE_ASSEMBLY} flye_eval \
   > flye_merqury.log 2>&1
 
-###########
+#--------------------------
 # Hifiasm
-###########
 mkdir -p ${OUTPUT_DIR}/hifiasm_eval/logs
 cd ${OUTPUT_DIR}/hifiasm_eval
 
@@ -56,9 +54,8 @@ apptainer exec --bind ${WORKDIR} ${CONTAINER} ${MERQURY}/merqury.sh \
   ${OUTPUT_DIR}/reads.meryl ${HIFIASM_ASSEMBLY} hifiasm_eval \
   > hifiasm_merqury.log 2>&1
 
-###########
+#--------------------------
 # LJA
-###########
 mkdir -p ${OUTPUT_DIR}/lja_eval/logs
 cd ${OUTPUT_DIR}/lja_eval
 
