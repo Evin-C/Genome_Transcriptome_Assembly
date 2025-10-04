@@ -30,7 +30,9 @@ ANZ_FILE=$(ls ${ANZ_DIR}/*.fastq.gz | head -n1)
 # Count k-mers (k=21) using Jellyfish
 apptainer exec --bind ${WORKDIR} ${CONTAINER} \
 jellyfish count -C -m 21 -s 5G -t ${SLURM_CPUS_PER_TASK} -o ${OUTPUT_DIR}/anz_counts.jf <(zcat ${ANZ_FILE})
-# -C: canonical kmers (both strands)
+# -C: count canonical kmers (merges reverse complementary k-mers)
+# -m 21: set k-mer size to 21
+# -s 5G: 5 GB of hash memory
 
 # Export the k-mer count histogram
 apptainer exec --bind ${WORKDIR} ${CONTAINER} \
