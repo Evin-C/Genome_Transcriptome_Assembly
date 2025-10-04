@@ -28,6 +28,7 @@ OUTPUT_DIR="${WORKDIR}/trinity_assembly_trimmed"
 # Create output directory if it does not already exist
 mkdir -p ${OUTPUT_DIR}
 
+# Run Trinity with Reference file
 Trinity \
   --seqType fq \
   --max_memory 64G \
