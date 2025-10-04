@@ -54,7 +54,8 @@ run_comparison () {
     apptainer exec --bind ${WORKDIR} ${CONTAINER} show-coords \
       -rcl ${PREFIX}.filtered.delta > ${PREFIX}.coords.txt
 }
-
+# ----------- Compare -----------
+# Compare
 # Assemblies vs Reference
 run_comparison ${REF} ${FLYE_ASSEMBLY} flye_vs_ref
 run_comparison ${REF} ${HIFIASM_ASSEMBLY} hifiasm_vs_ref
