@@ -47,3 +47,12 @@ apptainer exec --bind ${WORKDIR} ${CONTAINER} quast.py \
   --est-ref-size 135000000 \
   ${FLYE_ASSEMBLY} ${HIFIASM_ASSEMBLY} ${LJA_ASSEMBLY} \
   -o ${OUTPUT_DIR}/no_ref
+
+# QUAST command options:
+# --labels: custom labels for each input assembly
+# --large: optimizes QUAST for large genomes (typically > 100 Mbp)
+# --eukaryote: assemblies are eukaryotic
+# --no-sv: disable structural variant analysis (intended for smaller bacterial genomes)
+# -r: reference genome
+# --features: reference annotation (GFF or GTF) file for more detailed gene-level comparison
+# --est-ref-size: estimated reference genome size, helps compute certain statistics
