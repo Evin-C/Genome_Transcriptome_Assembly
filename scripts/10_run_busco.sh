@@ -71,3 +71,12 @@ apptainer exec --bind ${WORKDIR} ${CONTAINER} busco \
   --out_path ${OUTPUT_DIR} \
   --download_path ${LINEAGE_DIR} \
   --offline     # offline mode
+
+# BUSCO command options:
+# -i: input files
+# -m: mode of analysis (genome/transcriptome)
+# --lineage: specifies lineage dataset (ortholog database) to use for assessing completeness
+# -o: output directory name prefix
+# --out_path: output directory
+# --download_path: path to local lineage dataset directory (avoid re-downloading the same BUSCO dataset)
+# --ofline: run BUSCO in offline mode, avoids internet access (no possible servers errors)
