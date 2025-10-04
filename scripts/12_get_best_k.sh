@@ -4,9 +4,12 @@
 #SBATCH --output=best_k_%j.out        # Standard output log
 #SBATCH --error=best_k_%j.err         # Standard input log
 #SBATCH --cpus-per-task=4
-#SBATCH --mem=20G                     # 20G memory allocation
+#SBATCH --mem=10G                     # 10G memory allocation
 #SBATCH --time=00:10:00
 #SBATCH --partition=pibu_el8
+
+# This script runs Merqury’s best_k.sh utility to estimate the optimal k-mer size
+# for genome assembly evaluation based on the estimated genome size and an error rate.
 
 # Define Working Directory
 USER="ecapan"
