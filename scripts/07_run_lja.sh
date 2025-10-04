@@ -27,6 +27,7 @@ mkdir -p ${OUTPUT_DIR}
 # Go to output directory to make sure output files end up in here
 cd ${OUTPUT_DIR}
 
+# Run LJA on Anz-0 file
 apptainer exec --bind ${WORKDIR} ${CONTAINER} lja \
   --reads ${ANZ_FILE} \
   -t ${SLURM_CPUS_PER_TASK} \
