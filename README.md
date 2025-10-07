@@ -23,6 +23,7 @@ All data are publicly available from the following publications:
 Genome_Transcriptome_Assembly/
 │
 ├── scripts/
+│ ├── 00_get_data.sh # Get sequencing data
 │ ├── 01_run_fastqc.sh # Quality check on raw reads
 │ ├── 02_run_fastp.sh # Read trimming and filtering
 │ ├── 03_run_fastqc_after_fastp.sh # QC on cleaned reads
@@ -46,6 +47,7 @@ Genome_Transcriptome_Assembly/
 
 | Step | Script Number(s) | Task                                  | Tools                     |
 |------------|---------|---------------------------------------|-----------------------------|
+| 0 | [0](scripts/00_get_data.sh)      | Get Genome and Transcriptome Data                   |               |
 | 1 | [1](scripts/01_run_fastqc.sh), [2](scripts/02_run_fastp.sh), [3](scripts/03_run_fastqc_after_fastp.sh), [4](scripts/04_run_jellyfish.sh) | Quality Control, Preprocessing, and k-mer Counting       | FastQC, Fastp, Jellyfish |
 | 2 | [5](scripts/05_run_flye.sh), [6](scripts/06_run_hifiasm.sh), [7](scripts/07_run_lja.sh), [8](scripts/08_run_trinity.sh) | Genome and Transcriptome Assembly (multiple assemblers) | Flye, Hifiasm, LJA, Trinity        |
 | 3 | [9](scripts/09_download_busco_lineage.sh), [10](scripts/10_run_busco.sh), [11](scripts/11_run_quast.sh), [12](scripts/12_get_best_k.sh), [13](scripts/13_run_merqury.sh)| Assembly Evaluation          | BUSCO, QUAST, Merqury       |
@@ -78,14 +80,14 @@ Example:
 ```bash
 sbatch scripts/01_run_fastqc.sh
 ```
-Scripts can be executed independently (not recommended) or sequentially, following the workflow order (scripts are numbered).
+Scripts can be executed independently (not recommended) or sequentially, following the [workflow](#analysis-workflow) order (scripts are numbered).
 
 ## Notes
-Raw data and large results are not included in this repository.
+Raw data and results are not included in this repository.
 
 Scripts assume standard FASTQ input and write outputs to user-defined directories.
 
-The repository documents the workflow and scripts only. Actual assemblies and results are produced externally (by running the scripts).
+The repository documents the workflow and scripts only. Actual assemblies and results are produced by running the scripts.
 
 ## License
 This project is licensed under the MIT License.
